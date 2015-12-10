@@ -1,0 +1,54 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+table{
+    background-color: #E6E6E6;
+}
+
+.lista{
+    padding-top: 5px;
+}
+
+.tituloLista{
+    background-color: #EAEBE7;
+}
+
+.filaLista:hover{
+    background-color: #EAEBE7;
+}
+.filaLista{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.paddingFila{
+    padding-top: 5px; 
+}
+
+.tituloTabla{
+    background-color: #f1f1f1;
+}
+
+.headTabla{
+    background: #f1f1f1;
+}
+.tituloValor{
+    width: 240px;
+    background-color: #f1f1f1;
+}
+
+.fondo-logo{
+    height: 100%;
+    background: url('../img/logo_junior.jpg') center no-repeat; 
+    background-size: cover;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 30px;
+    background-color: #f5f5f5;
+}
