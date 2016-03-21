@@ -10,6 +10,10 @@
             </div>
             <div id="PanelFicha" class="panel-collapse collapse">
                 <div class="panel-body">
+                    <div class="row">
+                        {{Form::btInput($ficha,'fecha_ingreso',6)}}
+                        {{Form::btInput($ficha,'numero',6)}}
+                    </div>
                 </div>
             </div>
         </div>

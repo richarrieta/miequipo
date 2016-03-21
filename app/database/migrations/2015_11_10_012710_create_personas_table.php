@@ -35,6 +35,7 @@ class CreatePersonasTable extends Migration {
             $table->string('facebook', 100)->nullable();
             $table->string('twitter', 100)->nullable();
             $table->string('observaciones', 1500)->nullable();
+            $table->integer('user_id', false, true)->nullable();
             $table->boolean('ind_active')->default(1);
             $table->integer('version')->default(1);            
             $table->timestamps();

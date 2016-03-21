@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/controllers/FichasController.php</file>
-            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/views/fichas/index.blade.php</file>
-            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/models/BaseModel.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/seeds/UsersTableSeeder.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/config/database.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/migrations/2016_03_20_231246_create_club_admin_table.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/migrations/2015_11_10_021412_create_fichas_table.php</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/models/Ficha.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/migrations/2015_11_10_012710_create_personas_table.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/models/Persona.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/seeds/RecaudoTableSeeder.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/seeds/ClubTableSeeder.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/database/migrations/2015_11_10_013019_create_clubs_table.php</file>
         </group>
     </open-files>
 </project-private>

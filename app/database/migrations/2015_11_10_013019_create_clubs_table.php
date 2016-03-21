@@ -15,9 +15,8 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id');            
             $table->string('nombre', 50);
-            $table->string('escudo', 50);            
-            $table->string('pais_id', 15)->nullable();
-            $table->integer('direccion_sede', false, true)->nullable();
+            $table->string('escudo', 50)->nullable(); 
+            $table->string('direccion_sede')->nullable();
             $table->string('telefono_fijo', 20)->nullable();
             $table->string('telefono_celular', 20)->nullable();
             $table->string('email', 100)->nullable();

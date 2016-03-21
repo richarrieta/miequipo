@@ -60,6 +60,9 @@
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereVersion($value)
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereUpdatedAt($value)
+ * @method static \Ficha ordenar()
+ * @method static \Ficha aplicarFiltro($filtro)
+ * @method static \Ficha eagerLoad()
  */
 class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface {
 
@@ -245,30 +248,29 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
                      ->with('jugador');
     }
     
-    public function scopeAplicarFiltro($query, $filtro) {
-        $query->leftJoin('personas', 'fichas.jugador_id', '=', 'personas.id')
+    public function scopeAplicarFiltro($query) {
+
+        $query = $query->leftJoin('personas', 'fichas.jugador_id', '=', 'personas.id')
                 ->leftJoin('clubes', 'fichas.club_id', '=', 'clubes.id')
                 ->leftJoin('parroquias', 'personas.parroquia_id', '=', 'parroquias.id')
                 ->leftJoin('municipios', 'parroquias.municipio_id', '=', 'municipios.id')
                 ->leftJoin('estados', 'municipios.estado_id', '=', 'estados.id')
                 ->distinct()
                 ->select('fichas.*');
-
-       
-        //filtros de busqueda.
-        $campos = array_except($filtro, ['_token']);
-        foreach ($campos as $campo => $valor) {
-            //se quitan espacios vacios del array.
-            if (is_array($valor)) {
-                $valor = array_filter($valor);
-            }
-            if ($valor != '' && count($valor) > 0) {
-                //laravel cambia el . por _ por eso se usa el replace
-                $campo = str_replace('personas_', 'personas.', $campo);
-                $campo = str_replace('fichas_', 'fichas.', $campo);
-                $query = $this->parseFilter($campo, $valor, $query);
-            }
-        }
+//        //filtros de busqueda.
+//        $campos = array_except($filtro, ['_token']);
+//        foreach ($campos as $campo => $valor) {
+//            //se quitan espacios vacios del array.
+//            if (is_array($valor)) {
+//                $valor = array_filter($valor);
+//            }
+//            if ($valor != '' && count($valor) > 0) {
+//                //laravel cambia el . por _ por eso se usa el replace
+//                $campo = str_replace('personas_', 'personas.', $campo);
+//                $campo = str_replace('fichas_', 'fichas.', $campo);
+//                $query = $this->parseFilter($campo, $valor, $query);
+//            }
+//        }
         return $query;
     }
 

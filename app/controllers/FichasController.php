@@ -18,12 +18,16 @@ class FichasController extends BaseController {
         return View::make('fichas.planilla', $data);
     }
 
-    public function getIndex() {
-        $data['fichas'] = Ficha::eagerLoad()->ordenar();        
+    public function getIndex() {   
+        var_dump("Index");
+        $data['fichas'] = Ficha::eagerLoad()
+                ->aplicarFiltro()
+                ->ordenar();
         $data['fichas'] = $data['fichas']->paginate(5);
         //se usa para el helper de busqueda
         $data['persona'] = new Persona();
         $data['ficha'] = new Ficha();
+        var_dump($data['fichas']);
         return View::make('fichas.index', $data);
     }
 
