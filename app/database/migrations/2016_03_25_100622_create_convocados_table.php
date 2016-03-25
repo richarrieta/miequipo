@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriasTable extends Migration {
+class CreateConvocadosTable extends Migration {
 
     /**
      * Run the migrations.
@@ -11,9 +11,14 @@ class CreateCategoriasTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('categorias', function(Blueprint $table) {
+        Schema::create('convocados', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 50);
+            $table->integer('partido_id', false, true);
+            $table->integer('jugador_temporada_id', false, true);
+            $table->integer('goles')->nullable();
+            $table->integer('asistencias')->nullable();
+            $table->integer('amarillas')->nullable();
+            $table->string('observaciones', 1500)->nullable();
             $table->boolean('ind_active')->default(1);
             $table->integer('version')->default(1);
             $table->timestamps();
@@ -26,7 +31,7 @@ class CreateCategoriasTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('categorias');
+        Schema::drop('convocados');
     }
 
 }

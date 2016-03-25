@@ -3,28 +3,27 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFichasTable extends Migration
-{
+class CreateFichasTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('fichas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('representante_id', false, true); 
+            $table->integer('club_id', false, true);            
+            $table->integer('jugador_id', false, true);            
+            $table->integer('representante_id', false, true);
             $table->integer('parentesco_id', false, true)->nullable();
-            $table->integer('jugador_id', false, true);
-            $table->integer('club_id', false, true);
+            $table->integer('posicion_id', false, true)->nullable();
             $table->boolean('ind_hermano')->default(0);
             $table->boolean('ind_pago_especial')->default(0);
             $table->decimal('monto_mensual', 14, 2)->nullable();
             $table->date('fecha_ingreso');
             $table->date('fecha_egreso')->nullable();
             $table->integer('numero')->nullable();
-            $table->integer('posicion_id', false, true)->nullable();
             $table->string('mejoras', 1500)->nullable();
             $table->string('fortalezas', 1500)->nullable();
             $table->string('observaciones', 1500)->nullable();
@@ -35,7 +34,7 @@ class CreateFichasTable extends Migration
             $table->string('talla_short')->nullable();
             $table->integer('estatus', false, true)->default(1);
             $table->boolean('ind_active')->default(1);
-            $table->integer('version')->default(1);            
+            $table->integer('version')->default(1);
             $table->timestamps();
         });
     }
@@ -45,8 +44,8 @@ class CreateFichasTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('fichas');
     }
+
 }

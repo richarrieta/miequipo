@@ -14,7 +14,7 @@
             <div id="Panel" class="panel-collapse collapse in">
                 <div class="panel-body">
                     @include('templates.errores')
-                    @include('fichas.nuevaficha')
+                    
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div id="PanelUno" class="panel-collapse collapse in">
                 <div class="panel-body">             
                     {{Form::open(['url'=>'fichas/modificar','id'=>'form-ficha'])}}
-                    @include('fichas.ficha')
+
                     {{Form::close()}}   
                 </div>
             </div>      
@@ -47,7 +47,7 @@
             <div id="PanelDos" class="panel-collapse collapse">
                 <div class="panel-body">
                     {{Form::open(['url'=>'personas/modificar','id'=>'form-persona','class'=>'saveajax'])}}
-                    @include('fichas.jugador')
+
                     {{Form::close()}}
                 </div>
             </div>         
@@ -63,7 +63,7 @@
             <div id="PanelTres" class="panel-collapse collapse">
                 <div class="panel-body">
                     {{Form::open(['url'=>'personas/crear/'.$jugador->id.'/false','id'=>'form-persona','class'=>'saveajax'])}}
-                    @include('fichas.representante')
+                    
                     {{Form::close()}}
                 </div>
             </div>   
@@ -78,7 +78,6 @@
             </div>  
             <div id="PanelSeis" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @include('fichas.recaudos')
                 </div>
             </div>  
         </div>        
@@ -92,7 +91,6 @@
             </div>
             <div id="PanelOcho" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @include('fichas.galeriafotos')
                 </div>
             </div>   
         </div><!-------------------------------------------------------------------->
@@ -119,44 +117,7 @@
             </div>
         </div>
 
-        <div id="div-cne" class="panel panel-danger" style="display:none;">
-            <div class="panel-heading">CNE</div>
-            <div class="panel-body text-center">
-                <div class="row alert-warning text-justify" data-id="" style="padding: 5px;">
-                    <iframe id="icne" src="" width="370px" height="510px" ></iframe>
-                </div>
-            </div>
-        </div>
-        <div id="div-seniat" class="panel panel-danger" style="display:none;">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordionlateral" href="#PanelSeniat">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordionlateral" href="#PanelSeniat">
-                        SENIAT
-                    </a>
-                </h4>
-            </div>
-            <div  id="PanelSeniat" class="panel-collapse collapse collapse in">
-                <div class="panel-body">
-                    <iframe id="iseniat" src="" width="350px" height="540px" ></iframe>
-                </div>
-            </div>
-        </div>     
-        <div id="div-sate" class="panel panel-danger" style="display:none;">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordionlateral" href="#PanelSate">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordionlateral" href="#PanelSate">
-                        SATE
-                    </a>
-                </h4>
-            </div>
-            <div  id="PanelSate" class="panel-collapse collapse collapse in">
-                <div class="panel-body">
-                    <iframe id="isate" src="" width="350px"  height="540px" ></iframe>
-                </div>
-            </div>
-        </div>
-
-        @unless(is_null($solicitud->id))
+        @unless(is_null($ficha->id))
         <div id="div-bitacora" class="panel panel-danger" style="display:block;">
             <div class="panel-heading" data-toggle="collapse" data-parent="#accordionlateral" href="#PanelBitacora">
                 <h4 class="panel-title">
@@ -167,7 +128,6 @@
             </div>
             <div id="PanelBitacora" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @include('solicitudes.bitacora')
                 </div>
             </div>
         </div>
@@ -179,7 +139,7 @@
             </div>
             <div class="panel-body">
                 <div class="text-center">
-                    <a target="_blank" href="{{url('solicitudes/ver/'.$solicitud->id)}}" class="btn btn-primary btn-lg">
+                    <a target="_blank" href="{{url('fichas/ver/'.$ficha->id)}}" class="btn btn-primary btn-lg">
                         <span class="glyphicon glyphicon-search"></span> Ver
                     </a>
                     <div class="btn-group">
@@ -187,35 +147,17 @@
                             <span class="glyphicon glyphicon-print"></span> Imprimir <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li>{{HTML::link('solicitudes/planilla/'.$solicitud->id, 'Planilla', ['target'=>'_blank'])}}</li>
-                            @if($solicitud->TipoVivienda && $solicitud->Tenencia)
-                            <li>{{HTML::link('solicitudes/informe/'.$solicitud->id, 'Informe Socioeconomico', ['target'=>'_blank'])}}</li>
-                            @endif
-                            <li>{{HTML::link('solicitudes/bitacora/'.$solicitud->id, 'Bitacora', ['target'=>'_blank'])}}</li>
+
                         </ul>
                     </div>
                 </div>
             </div> 
         </div>
-        @if($solicitud->estatus == 'ACA')
-        <div class="panel panel-danger">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordionlateral" href="#PanelPlanilla">
-                <h4 class="panel-title">
-                    Solicitar Aprobacion
-                </h4>
-            </div>
-            <div class="panel-body">
-                <div class="text-center">   
-                    {{HTML::buttonText('solicitudes/solicitaraprobacion/'.$solicitud->id , 'certificate', 'Solicitar Aprobacion', true)}}                           
-                </div>
-            </div> 
-        </div>
-        @endif
         @endunless
     </div>
 </div>
 @stop
 @section('javascript')
-{{HTML::script('js/views/solicitudes/solicitud.js')}}
+{{HTML::script('js/views/fichas/planilla.js')}}
 @stop
 

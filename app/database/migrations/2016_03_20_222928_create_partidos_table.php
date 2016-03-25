@@ -13,8 +13,8 @@ class CreatePartidosTable extends Migration {
     public function up() {
         Schema::create('partidos', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('categoria_club_casa_id', false, true);
-            $table->integer('categoria_club_visitante_id', false, true);
+            $table->integer('club_temporada_casa_id', false, true);
+            $table->integer('club_temporada_visitante_id', false, true);
             $table->date('fecha_programada')->nullable();
             $table->date('fecha_partido')->nullable();
             $table->integer('arbitro_id', false, true);
