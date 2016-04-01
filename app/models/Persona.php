@@ -77,8 +77,7 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
      */
     protected $fillable = [
         'nombre', 'apellido', 'tipo_nacionalidad_id', 'ci', 'sexo',
-        'estado_civil_id', 'lugar_nacimiento', 'fecha_nacimiento',
-        'nivel_academico_id', 'co_id', 'parroquia_id', 'ciudad',
+        'estado_civil_id', 'lugar_nacimiento', 'fecha_nacimiento', 'parroquia_id', 'ciudad',
         'zona_sector', 'calle_avenida', 'apto_casa',
         'telefono_fijo', 'telefono_celular', 'telefono_otro', 'email',
         'twitter', 'facebook', 'observaciones', 

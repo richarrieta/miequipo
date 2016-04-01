@@ -137,7 +137,7 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
      * Define una relación pertenece al Jugador
      * @return jugador
      */
-    public function jugador() {
+    public function personaJugador() {
         return $this->belongsTo('Persona');
     }
 
@@ -145,7 +145,7 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
      * Define una relación pertenece al Representante
      * @return representante
      */
-    public function representante() {
+    public function personaRepresentante() {
         return $this->belongsTo('Persona');
     }
 
@@ -171,10 +171,6 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
 
     public function recaudosFicha() {
         return $this->hasMany('RecaudoFicha')->orderBy('id');
-    }
-
-    public function fotos() {
-        return $this->hasMany('FotoFicha')->orderBy('id');
     }
 
     public function setFechaIngresoAttribute($value) {

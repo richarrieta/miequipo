@@ -81,11 +81,11 @@ class FichasController extends BaseController {
     }
 
     public function getNueva() {
-        //Session::forget('ficha');
+        Session::forget('ficha');
         $data['nuevo'] = true;
         $data['ficha'] = new Ficha();
-        $data['jugador'] = new Persona();
-        $data['representante'] = new Persona();
+        $data['personaJugador'] = new Persona();
+        $data['personaRepresentante'] = new Persona();
         return View::make("fichas.plantilla", $data);
     }
 

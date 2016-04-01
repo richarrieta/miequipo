@@ -44,11 +44,6 @@
                     </div>
                 </div>
                 <div id="content" class="col-lg-12 col-sm-12">
-                    <div class="col-lg-12">
-                        @unless(Request::is('/'))
-                        {{HTML::image('img/logo.png', 'Logo Mi Equipo', ['class'=>'img-responsive', 'width'=>'100%'])}}
-                        @endunless
-                    </div>
                     @yield('contenido')
                 </div>
             </div>

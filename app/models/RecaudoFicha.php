@@ -40,7 +40,7 @@ class RecaudoFicha extends BaseModel implements DefaultValuesInterface, SimpleTa
 
     protected function getPrettyFields() {
         return [
-            'ficha_id' => 'Solicitud',
+            'ficha_id' => 'Ficha',
             'recaudo_id' => 'Recaudo',
             'ind_recibido' => '¿Recibido?',
             'fecha_vencimiento' => 'Fecha de vencimiento',

@@ -14,7 +14,7 @@
             <div id="Panel" class="panel-collapse collapse in">
                 <div class="panel-body">
                     @include('templates.errores')
-                    
+                    @include('fichas.nuevaficha')
                 </div>
             </div>
         </div>

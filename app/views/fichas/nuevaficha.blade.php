@@ -4,12 +4,12 @@
     <h4>Datos del Representante</h4>
     {{Form::hidden('representante_id', Input::old('representante_id'), ['id'=>'representante_id'])}}
     <div class="row">
-        {{Form::btInput($representante,'tipo_nacionalidad_id',6)}}
-        {{Form::btInput($representante,'ci',6)}}     
+        {{Form::btInput($personaRepresentante,'tipo_nacionalidad_id',6)}}
+        {{Form::btInput($personaRepresentante,'ci',6)}}     
     </div>
     <div class="row">
-        {{Form::btInput($representante,'nombre',6)}}
-        {{Form::btInput($representante,'apellido',6)}}          
+        {{Form::btInput($personaRepresentante,'nombre',6)}}
+        {{Form::btInput($personaRepresentante,'apellido',6)}}          
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -19,20 +19,17 @@
 </div>
 <hr>
 <h4>Datos del Jugador</h4>
-<div class="row">
-    {{Form::btInput($jugador,'ind_sincedula')}}
-</div>
-<div id='div-beneficiario'>
+<div id='div-jugador'>
     {{Form::hidden('jugador_id', Input::old('jugador_id'), ['id'=>'jugador_id'])}}
     <div class="row">
         <div id="div-menor">
-            {{Form::btInput($jugador,'tipo_nacionalidad_id',6)}}
-            {{Form::btInput($jugador,'ci',6)}}     
+            {{Form::btInput($personaJugador,'tipo_nacionalidad_id',6)}}
+            {{Form::btInput($personaJugador,'ci',6)}}     
         </div>
     </div>
     <div class="row">
-        {{Form::btInput($jugador,'nombre',6)}}
-        {{Form::btInput($jugador,'apellido',6)}}          
+        {{Form::btInput($personaJugador,'nombre',6)}}
+        {{Form::btInput($personaJugador,'apellido',6)}}          
     </div>
     <div class="row">
         <div class="col-lg-12">
