@@ -3,16 +3,16 @@
 /**
  * RecaudoFicha
  *
- * @property-read \Ficha $ficha 
- * @property-read \Recaudo $recaudo 
- * @property-write mixed $fecha_vencimiento 
- * @property-write mixed $documento 
- * @property-read mixed $documento_link 
- * @property-read mixed $estatus_display 
+ * @property-read \Ficha $ficha
+ * @property-read \Recaudo $recaudo
+ * @property-write mixed $fecha_vencimiento
+ * @property-write mixed $documento
+ * @property-read mixed $documento_link
+ * @property-read mixed $estatus_display
  */
-class RecaudoFicha extends BaseModel implements DefaultValuesInterface, SimpleTableInterface {
+class RecaudosFicha extends BaseModel implements DefaultValuesInterface, SimpleTableInterface {
 
-    protected $table = "recaudo_ficha";
+    protected $table = "recaudos_ficha";
 
     /**
      * Campos que se pueden llenar mediante el uso de mass-assignment
@@ -50,7 +50,7 @@ class RecaudoFicha extends BaseModel implements DefaultValuesInterface, SimpleTa
     }
 
     public function getPrettyName() {
-        return "recaudo_ficha";
+        return "recaudos_ficha";
     }
 
     /**

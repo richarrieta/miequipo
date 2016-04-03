@@ -3,15 +3,15 @@
 /**
  * AyudaCampo
  *
- * @property integer $id 
- * @property string $formulario 
- * @property string $campo 
- * @property string $ayuda 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property string $formulario
+ * @property string $campo
+ * @property string $ayuda
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\AyudaCampo whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\AyudaCampo whereFormulario($value)
  * @method static \Illuminate\Database\Query\Builder|\AyudaCampo whereCampo($value)

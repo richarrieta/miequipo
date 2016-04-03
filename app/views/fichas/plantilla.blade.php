@@ -23,35 +23,19 @@
             <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#PanelUno">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#PanelUno">
-                        Ficha &nbsp;{{$ficha->id}}
+                        Ficha del numero&nbsp;{{$ficha->numero}}
                     </a>
                 </h4>
             </div>            
             <div id="PanelUno" class="panel-collapse collapse in">
                 <div class="panel-body">             
                     {{Form::open(['url'=>'fichas/modificar','id'=>'form-ficha'])}}
-
+                        @include('fichas.ficha')
                     {{Form::close()}}   
                 </div>
             </div>      
         </div>
         @unless(is_null($ficha->id))
-       <div class="panel panel-danger">
-            <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" href="#PanelDos">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#PanelDos">
-                        Jugador
-                    </a>
-                </h4>
-            </div>         
-            <div id="PanelDos" class="panel-collapse collapse">
-                <div class="panel-body">
-                    {{Form::open(['url'=>'personas/modificar','id'=>'form-persona','class'=>'saveajax'])}}
-
-                    {{Form::close()}}
-                </div>
-            </div>         
-        </div>
         <div class="panel panel-danger">
             <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#PanelTres">
                 <h4 class="panel-title">
@@ -63,37 +47,27 @@
             <div id="PanelTres" class="panel-collapse collapse">
                 <div class="panel-body">
                     {{Form::open(['url'=>'personas/crear/'.$jugador->id.'/false','id'=>'form-persona','class'=>'saveajax'])}}
-                    
+                        @include('fichas.representante')
                     {{Form::close()}}
                 </div>
             </div>   
-        </div>             
-        <div class="panel panel-danger">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#PanelSeis">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#PanelSeis">
-                        Recaudos
-                    </a>
-                </h4>
-            </div>  
-            <div id="PanelSeis" class="panel-collapse collapse">
-                <div class="panel-body">
-                </div>
-            </div>  
         </div>        
-        <div class="panel panel-danger">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#PanelOcho">
+       <div class="panel panel-danger">
+            <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" href="#PanelDos">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#PanelOcho">
-                        Galeria Fotos
+                    <a data-toggle="collapse" data-parent="#accordion" href="#PanelDos">
+                        Jugador
                     </a>
                 </h4>
-            </div>
-            <div id="PanelOcho" class="panel-collapse collapse">
+            </div>         
+            <div id="PanelDos" class="panel-collapse collapse">
                 <div class="panel-body">
+                    {{Form::open(['url'=>'personas/modificar','id'=>'form-persona','class'=>'saveajax'])}}
+                        @include('fichas.jugador')
+                    {{Form::close()}}
                 </div>
-            </div>   
-        </div><!-------------------------------------------------------------------->
+            </div>         
+        </div>             
         @endunless
         @endif
     </div>
@@ -158,6 +132,6 @@
 </div>
 @stop
 @section('javascript')
-{{HTML::script('js/views/fichas/planilla.js')}}
+{{HTML::script('js/views/fichas/ficha.js')}}
 @stop
 

@@ -3,39 +3,39 @@
 /**
  * Ficha
  *
- * @property integer $id 
- * @property integer $representante_id 
- * @property integer $jugador_id 
- * @property integer $club_id 
- * @property boolean $ind_hermano 
- * @property boolean $ind_pago_especial 
- * @property float $monto_mensual 
- * @property \Carbon\Carbon $fecha_ingreso 
- * @property \Carbon\Carbon $fecha_egreso 
- * @property integer $numero 
- * @property integer $posicion_id 
- * @property string $mejoras 
- * @property string $fortalezas 
- * @property string $observaciones 
- * @property integer $goles 
- * @property string $altura 
- * @property string $peso 
- * @property string $talla_camisa 
- * @property string $talla_short 
- * @property integer $estatus 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read \Persona $jugador 
- * @property-read \Persona $representante 
- * @property-read \Club $club 
- * @property-read \Posicion $posicion 
- * @property-read \Illuminate\Database\Eloquent\Collection|\Bitacora[] $bitacoras 
- * @property-read \Illuminate\Database\Eloquent\Collection|\RecaudoFicha')->orderBy('id[] $recaudosFicha 
- * @property-read \Illuminate\Database\Eloquent\Collection|\FotoFicha')->orderBy('id[] $fotos 
- * @property-read mixed $monto_mensual_for 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property integer $representante_id
+ * @property integer $jugador_id
+ * @property integer $club_id
+ * @property boolean $ind_hermano
+ * @property boolean $ind_pago_especial
+ * @property float $monto_mensual
+ * @property \Carbon\Carbon $fecha_ingreso
+ * @property \Carbon\Carbon $fecha_egreso
+ * @property integer $numero
+ * @property integer $posicion_id
+ * @property string $mejoras
+ * @property string $fortalezas
+ * @property string $observaciones
+ * @property integer $goles
+ * @property string $altura
+ * @property string $peso
+ * @property string $talla_camisa
+ * @property string $talla_short
+ * @property integer $estatus
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Persona $jugador
+ * @property-read \Persona $representante
+ * @property-read \Club $club
+ * @property-read \Posicion $posicion
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Bitacora[] $bitacoras
+ * @property-read \Illuminate\Database\Eloquent\Collection|\RecaudoFicha')->orderBy('id[] $recaudosFicha
+ * @property-read \Illuminate\Database\Eloquent\Collection|\FotoFicha')->orderBy('id[] $fotos
+ * @property-read mixed $monto_mensual_for
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereRepresentanteId($value)
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereJugadorId($value)
@@ -63,6 +63,11 @@
  * @method static \Ficha ordenar()
  * @method static \Ficha aplicarFiltro($filtro)
  * @method static \Ficha eagerLoad()
+ * @property integer $parentesco_id 
+ * @property-read \Persona $personaJugador 
+ * @property-read \Persona $personaRepresentante 
+ * @property-read \Parentesco $parentesco 
+ * @method static \Illuminate\Database\Query\Builder|\Ficha whereParentescoId($value)
  */
 class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface {
 
@@ -76,8 +81,8 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
      * @var array
      */
     protected $fillable = [
-        'jugador_id', 'representante_id', 'parentesco_id', 'club_id', 'ind_hermano','ind_pago_especial',
-        'fecha_ingreso', 'fecha_egreso', 'monto_mensual', 'numero', 'posicion_id', 
+        'jugador_id', 'representante_id', 'parentesco_id', 'club_id', 'ind_hermano', 'ind_pago_especial',
+        'fecha_ingreso', 'fecha_egreso', 'monto_mensual', 'numero', 'posicion_id',
         'mejoras', 'fortalezas', 'observaciones', 'goles', 'altura', 'peso', 'talla_camisa', 'talla_short',
     ];
 
@@ -92,8 +97,6 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
         'jugador_id' => 'required|integer',
         'representante_id' => 'required|integer',
         'club_id' => 'required|integer',
-        'ind_hermano' => 'required',
-        'ind_pago_especial' => 'required',
         'fecha_ingreso' => '',
         'fecha_egreso' => '',
         'monto_mensual' => '',
@@ -103,24 +106,24 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     protected function getPrettyFields() {
         return [
             'id' => 'Número de ficha',
-            'jugador_id'  => 'Jugados', 
+            'jugador_id' => 'Jugados',
             'representante_id' => 'Representante',
-            'club_id' => 'Club', 
+            'club_id' => 'Club',
             'parentesco_id' => 'Parentesco del representante',
             'ind_hermano' => 'Tiene hermanos en el club?',
             'ind_pago_especial' => 'Pago especial?',
-            'fecha_ingreso' => 'Fecha de ingreso', 
-            'fecha_egreso' => 'Fecha de egreso', 
-            'monto_mensual' => 'Monto mensual', 
-            'numero' => 'Número', 
-            'posicion_id' => 'Posición', 
-            'mejoras' => 'Areas a mejorar', 
-            'fortalezas' => 'Fortalezas', 
-            'observaciones' => 'Observaciones', 
-            'goles' => 'Goles con el club', 
-            'altura' => 'Altura', 
-            'peso' => 'Peso', 
-            'talla_camisa' => 'Talla de camisa', 
+            'fecha_ingreso' => 'Fecha de ingreso',
+            'fecha_egreso' => 'Fecha de egreso',
+            'monto_mensual' => 'Monto mensual',
+            'numero' => 'Número',
+            'posicion_id' => 'Posición',
+            'mejoras' => 'Areas a mejorar',
+            'fortalezas' => 'Fortalezas',
+            'observaciones' => 'Observaciones',
+            'goles' => 'Goles con el club',
+            'altura' => 'Altura',
+            'peso' => 'Peso',
+            'talla_camisa' => 'Talla de camisa',
             'talla_short' => 'Talla de short',
         ];
     }
@@ -149,6 +152,10 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
         return $this->belongsTo('Persona');
     }
 
+    public function parentesco() {
+        return $this->belongsTo('Parentesco');
+    }
+
     /**
      * Define una relación pertenece a Club
      * @return Club
@@ -170,7 +177,7 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     }
 
     public function recaudosFicha() {
-        return $this->hasMany('RecaudoFicha')->orderBy('id');
+        return $this->hasMany('RecaudosFicha')->orderBy('id');
     }
 
     public function setFechaIngresoAttribute($value) {
@@ -202,13 +209,13 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     }
 
     public function createdModel($model) {
-        $recaudos = Recaudo::all()->whereIndActive(true)->get();
-        $recaudos->each(function ($recaudo) use ($model) {
-            $recFicha = new RecaudoFicha();
-            $recFicha->ficha()->associate($model);
-            $recFicha->recaudo()->associate($recaudo);
-            $recFicha->save();
-        });
+//        $recaudos = Recaudo::all();
+//        $recaudos->each(function ($recaudo) use ($model) {
+//            $recFicha = new RecaudosFicha();
+//            $recFicha->ficha()->associate($model);
+//            $recFicha->recaudo()->associate($recaudo);
+//            $recFicha->save();
+//        });
 
         Bitacora::registrar('Se registró la ficha.', $model->id);
     }
@@ -240,14 +247,16 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     }
 
     public function scopeEagerLoad($query) {
-        return $query->with('representante')
-                     ->with('jugador');
+        var_dump($query);
+        exit();
+        return $query->with('personaRepresentante')
+                        ->with('personaJugador');
     }
-    
+
     public function scopeAplicarFiltro($query) {
 
         $query = $query->leftJoin('personas', 'fichas.jugador_id', '=', 'personas.id')
-                ->leftJoin('clubes', 'fichas.club_id', '=', 'clubes.id')
+                ->leftJoin('clubs', 'fichas.club_id', '=', 'club.id')
                 ->leftJoin('parroquias', 'personas.parroquia_id', '=', 'parroquias.id')
                 ->leftJoin('municipios', 'parroquias.municipio_id', '=', 'municipios.id')
                 ->leftJoin('estados', 'municipios.estado_id', '=', 'estados.id')
@@ -277,4 +286,5 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     public function getRepresentante() {
         return $this->representante;
     }
+
 }

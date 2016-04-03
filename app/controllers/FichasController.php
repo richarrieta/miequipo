@@ -18,8 +18,7 @@ class FichasController extends BaseController {
         return View::make('fichas.planilla', $data);
     }
 
-    public function getIndex() {   
-        var_dump("Index");
+    public function getIndex() {           
         $data['fichas'] = Ficha::eagerLoad()
                 ->aplicarFiltro()
                 ->ordenar();
@@ -27,7 +26,7 @@ class FichasController extends BaseController {
         //se usa para el helper de busqueda
         $data['persona'] = new Persona();
         $data['ficha'] = new Ficha();
-        var_dump($data['fichas']);
+        
         return View::make('fichas.index', $data);
     }
 
@@ -64,7 +63,8 @@ class FichasController extends BaseController {
 
         $data['jugador'] = Persona::findOrFail($data['ficha']->jugador_id);
         $data['representante'] = Persona::findOrNew($data['ficha']->representante_id);
-
+//        $data['recaudo'] = new RecaudosFicha();
+//        $data['recaudos'] = $data['ficha']->recaudosFicha;
         
         if (Request::ajax()) {
             return Response::json($data);

@@ -1,10 +1,10 @@
 @include('templates.errores')
-{{Form::hidden('id',$ficha->id, ['id'=>'id'])}}
-{{Form::hidden('jugador_id',$ficha->jugador_id, ['id'=>'jugador_id'])}}
-{{Form::hidden('representante_id',$ficha->representante_id, ['id'=>'representante_id'])}}
-{{Form::hidden('ind_sincedula',$ficha->jugador->ind_sincedula, ['id'=>'ind_sincedula'])}}
+{{Form::hidden('id', $ficha->id, ['id'=>'id'])}}
+{{Form::hidden('jugador_id', $ficha->jugador_id, ['id'=>'jugador_id'])}}
+{{Form::hidden('representante_id', $ficha->representante_id, ['id'=>'representante_id'])}}
 <div class="row">
-    {{Form::btSelect('parentesco_id', Parentesco::getCombo("Parentesco"), @$parentesco->id, 4)}}
+    {{Form::btInput($ficha,'parentesco_id', 6)}}
+    {{Form::btInput($ficha,'numero',6)}}
 </div>
 <div class="row">
     {{Form::btInput($ficha,'fecha_ingreso',6)}}

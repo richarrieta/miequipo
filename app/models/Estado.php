@@ -3,14 +3,14 @@
 /**
  * Estado
  *
- * @property integer $id 
- * @property string $nombre 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read \Illuminate\Database\Eloquent\Collection|\Municipio[] $municipios 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property string $nombre
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Municipio[] $municipios
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Estado whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Estado whereNombre($value)
  * @method static \Illuminate\Database\Query\Builder|\Estado whereIndActive($value)

@@ -1,6 +1,6 @@
 <?php
 
-class clubTableSeeder extends Seeder {
+class ClubTableSeeder extends Seeder {
 
     public function run() {
         Club::create(array('nombre' => 'Junior Los Teques',

@@ -3,23 +3,23 @@
 /**
  * Bitacora
  *
- * @property integer $id 
- * @property integer $ficha_id 
- * @property \Carbon\Carbon $fecha 
- * @property string $nota 
- * @property integer $usuario_id 
- * @property boolean $ind_activo 
- * @property boolean $ind_alarma 
- * @property boolean $ind_atendida 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read \Ficha $ficha 
- * @property-read \Usuario $usuario 
- * @property-read mixed $notafor 
- * @property-read mixed $vencida 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property integer $ficha_id
+ * @property \Carbon\Carbon $fecha
+ * @property string $nota
+ * @property integer $usuario_id
+ * @property boolean $ind_activo
+ * @property boolean $ind_alarma
+ * @property boolean $ind_atendida
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Ficha $ficha
+ * @property-read \Usuario $usuario
+ * @property-read mixed $notafor
+ * @property-read mixed $vencida
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Bitacora whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Bitacora whereFichaId($value)
  * @method static \Illuminate\Database\Query\Builder|\Bitacora whereFecha($value)

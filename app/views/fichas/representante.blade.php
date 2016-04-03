@@ -17,10 +17,23 @@
     {{Form::btInput($representante,'edad',6,'text',['disabled'=>'disabled'])}}
     {{Form::btInput($representante,'estado_civil_id',6)}}    
 </div>
+<hr>
+<h4>Direcci&oacute;n de habitaci&oacute;n</h4> 
 <div class="row">
-    {{Form::btInput($representante,'nivel_academico_id')}}
+    {{Form::btInput($representante,'parroquia->municipio->estado_id',4, 'text', ['data-url'=>'estados/municipios','data-child'=>'parroquia_municipio_id'])}}
+    {{Form::btInput($representante,'parroquia->municipio_id',4, 'text', ['data-url'=>'municipios/parroquias','data-child'=>'parroquia_id'])}}
+    {{Form::btInput($representante,'parroquia_id',4)}}
 </div>
-@include('fichas/direccion-representante')
+<div class="row">
+    {{Form::btInput($representante,'ciudad',4)}}
+    {{Form::btInput($representante,'zona_sector',4)}}
+    {{Form::btInput($representante,'calle_avenida',4)}}
+</div>
+<div class="row">
+    {{Form::btInput($representante,'apto_casa',4)}}
+    {{Form::btInput($representante,'telefono_fijo',4)}}
+    {{Form::btInput($representante,'telefono_celular',4)}}
+</div>
 <div class="row">
     {{Form::btInput($representante,'email',4)}}
     {{Form::btInput($representante,'twitter',4)}}

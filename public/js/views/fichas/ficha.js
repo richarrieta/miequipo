@@ -84,7 +84,7 @@ function copiarDireccion() {
     confirmarIntencion("¿Esta seguro que desea copiar la dirección?", function () {
         var id = $(btn).attr('data-id');
         var url = $(btn).attr('data-url');
-        var div = $(btn).closest('#direccion_solicitante');
+        var div = $(btn).closest('#direccion_representante');
         $.ajax({
             url: baseUrl + url + "/" + id,
             method: 'get',

@@ -37,16 +37,16 @@ class PersonasController extends BaseController {
         return Response::json(['errores' => $persona->getErrors()], 400);
     }
 
-    public function getCopiar($jugador_id) {
-        $data['vista'] = $this->getCopiarDireccion($jugador_id)->render();
+    public function getCopiar($representante_id) {
+        $data['vista'] = $this->getCopiarDireccion($representante_id)->render();
         $data['mensaje'] = "Dirección copiada correctamente";
         return Response::json($data);
     }
     
     public function getCopiarDireccion($id) {
-        $beneficiario = Persona::findOrFail($id);
-        $data['jugador'] = $beneficiario;
-        $data['representante'] = $beneficiario;
-        return View::make('solicitudes.direccion-jugador', $data);
+        $representante = Persona::findOrFail($id);
+        $data['jugador'] = $representante;
+        $data['representante'] = $representante;
+        return View::make('fichas.direccion_representante', $data);
     }
 }

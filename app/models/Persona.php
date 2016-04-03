@@ -3,41 +3,41 @@
 /**
  * Persona
  *
- * @property integer $id 
- * @property string $nombre 
- * @property string $apellido 
- * @property string $foto 
- * @property integer $tipo_nacionalidad_id 
- * @property integer $documento_identidad 
- * @property string $sexo 
- * @property integer $estado_civil_id 
- * @property string $lugar_nacimiento 
- * @property \Carbon\Carbon $fecha_nacimiento 
- * @property string $pais_id 
- * @property integer $parroquia_id 
- * @property string $ciudad 
- * @property string $zona_sector 
- * @property string $calle_avenida 
- * @property string $apto_casa 
- * @property string $telefono_fijo 
- * @property string $telefono_celular 
- * @property string $email 
- * @property string $facebook 
- * @property string $twitter 
- * @property string $observaciones 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read \TipoNacionalidad $tipoNacionalidad 
- * @property-read \EstadoCivil $estadoCivil 
- * @property-read \Parroquia $parroquia 
- * @property-read \Illuminate\Database\Eloquent\Collection|\Ficha[] $fichas 
- * @property-read mixed $edad 
- * @property-read mixed $documento 
- * @property-read mixed $nombre_completo 
- * @property-read mixed $informacion_contacto 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property string $nombre
+ * @property string $apellido
+ * @property string $foto
+ * @property integer $tipo_nacionalidad_id
+ * @property integer $documento_identidad
+ * @property string $sexo
+ * @property integer $estado_civil_id
+ * @property string $lugar_nacimiento
+ * @property \Carbon\Carbon $fecha_nacimiento
+ * @property string $pais_id
+ * @property integer $parroquia_id
+ * @property string $ciudad
+ * @property string $zona_sector
+ * @property string $calle_avenida
+ * @property string $apto_casa
+ * @property string $telefono_fijo
+ * @property string $telefono_celular
+ * @property string $email
+ * @property string $facebook
+ * @property string $twitter
+ * @property string $observaciones
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \TipoNacionalidad $tipoNacionalidad
+ * @property-read \EstadoCivil $estadoCivil
+ * @property-read \Parroquia $parroquia
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Ficha[] $fichas
+ * @property-read mixed $edad
+ * @property-read mixed $documento
+ * @property-read mixed $nombre_completo
+ * @property-read mixed $informacion_contacto
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Persona whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Persona whereNombre($value)
  * @method static \Illuminate\Database\Query\Builder|\Persona whereApellido($value)
@@ -64,6 +64,13 @@
  * @method static \Illuminate\Database\Query\Builder|\Persona whereVersion($value)
  * @method static \Illuminate\Database\Query\Builder|\Persona whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Persona whereUpdatedAt($value)
+ * @property boolean $ind_sincedula 
+ * @property integer $ci 
+ * @property integer $user_id 
+ * @property-read \NivelAcademico $nivelAcademico 
+ * @method static \Illuminate\Database\Query\Builder|\Persona whereIndSincedula($value)
+ * @method static \Illuminate\Database\Query\Builder|\Persona whereCi($value)
+ * @method static \Illuminate\Database\Query\Builder|\Persona whereUserId($value)
  */
 class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesInterface {
 
@@ -77,9 +84,10 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
      */
     protected $fillable = [
         'nombre', 'apellido', 'tipo_nacionalidad_id', 'ci', 'sexo',
-        'estado_civil_id', 'lugar_nacimiento', 'fecha_nacimiento', 'parroquia_id', 'ciudad',
+        'estado_civil_id', 'lugar_nacimiento', 'fecha_nacimiento',
+        'nivel_academico_id', 'parroquia_id', 'ciudad',
         'zona_sector', 'calle_avenida', 'apto_casa',
-        'telefono_fijo', 'telefono_celular', 'telefono_otro', 'email',
+        'telefono_fijo', 'telefono_celular', 'email',
         'twitter', 'facebook', 'observaciones', 
     ];
 
@@ -106,7 +114,6 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
         'apto_casa' => '',
         'telefono_fijo' => 'max:20|min:7|regex:/^[0-9.-]*$/',
         'telefono_celular' => 'max:20|min:7|regex:/^[0-9.-]*$/',
-        'telefono_otro' => 'max:20|min:7|regex:/^[0-9.-]*$/',
         'email' => 'email',
         'twitter' => '',
         'facebook' => '',
@@ -134,7 +141,6 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
             'apto_casa' => 'Apto/casa Nro.',
             'telefono_fijo' => 'Teléfono fijo',
             'telefono_celular' => 'Teléfono celular',
-            'telefono_otro' => 'Otro Teléfono',
             'email' => 'Email',
             'twitter' => 'Twitter',
             'facebook' => 'Facebook',
@@ -163,6 +169,13 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
         return $this->belongsTo('EstadoCivil');
     }
 
+     /**
+     * Define una relación pertenece a NivelAcademico
+     * @return NivelAcademico
+     */
+    public function nivelAcademico() {
+        return $this->belongsTo('NivelAcademico');
+    }
     /**
      * Define una relación pertenece a Parroquia
      * @return Parroquia
@@ -217,9 +230,6 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
         }
         if ($this->telefono_celular != "") {
             $contactos .= "Celular: " . $this->telefono_celular . '<br>';
-        }
-        if ($this->telefono_otro != "") {
-            $contactos .= "Otro: " . $this->telefono_otro . '<br>';
         }
         if ($this->email != "") {
             $contactos .= "Email: " . $this->email . '<br>';

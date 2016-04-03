@@ -3,14 +3,14 @@
 /**
  * Parentesco
  *
- * @property integer $id 
- * @property string $nombre 
- * @property string $inverso 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property string $nombre
+ * @property string $inverso
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Parentesco whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Parentesco whereNombre($value)
  * @method static \Illuminate\Database\Query\Builder|\Parentesco whereInverso($value)

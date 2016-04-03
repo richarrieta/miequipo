@@ -3,16 +3,16 @@
 /**
  * Municipio
  *
- * @property integer $id 
- * @property integer $estado_id 
- * @property string $nombre 
- * @property boolean $ind_active 
- * @property integer $version 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
- * @property-read \Estado $estado 
- * @property-read \Illuminate\Database\Eloquent\Collection|\Parroquia[] $parroquias 
- * @property-read mixed $estatus_display 
+ * @property integer $id
+ * @property integer $estado_id
+ * @property string $nombre
+ * @property boolean $ind_active
+ * @property integer $version
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Estado $estado
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Parroquia[] $parroquias
+ * @property-read mixed $estatus_display
  * @method static \Illuminate\Database\Query\Builder|\Municipio whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Municipio whereEstadoId($value)
  * @method static \Illuminate\Database\Query\Builder|\Municipio whereNombre($value)

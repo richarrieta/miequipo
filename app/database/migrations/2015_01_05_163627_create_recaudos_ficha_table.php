@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecaudoFichaTable extends Migration {
+class CreatesRecaudoFichaTable extends Migration {
 
     /**
      * Run the migrations.

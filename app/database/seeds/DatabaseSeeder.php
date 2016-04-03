@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder {
     public function run() {
         Eloquent::unguard();
         $this->call('ConfiguracionSeeder');
+        $this->call('ClubTableSeeder');
+        $this->call('PosicionTableSeeder');
         $this->call('NivelAcademicoTableSeeder');
         $this->call('ParentescoTableSeeder');
         $this->call('RecaudoTableSeeder');

@@ -2,7 +2,7 @@
 
 @if($recaudos->count()>0)
     <h4>Recaudos consignados</h4>
-    {{HTML::simpleTable($recaudos, 'RecaudoFicha', ['pencil'=>'Recibido'],'recaudosficha/modificar')}}
+    {{HTML::simpleTable($recaudos, 'RecaudosFicha', ['pencil'=>'Recibido'],'recaudosficha/modificar')}}
 @else
     <div class="row tituloLista">
         <div class="col-xs-12 col-sm-12 col-md-12">
