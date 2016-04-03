@@ -61,18 +61,10 @@ class FichasController extends BaseController {
         } else {
             $data['ficha'] = Ficha::findOrFail($id);
         }
-        if (!$data['ficha']->puedeModificar()) {
-            return Redirect::to('fichas')->with('error', 'Solo se pueden editar fichas en Elaboración');
-        }
+
         $data['jugador'] = Persona::findOrFail($data['ficha']->jugador_id);
         $data['representante'] = Persona::findOrNew($data['ficha']->representante_id);
-        $data['recaudo'] = new RecaudoFicha();
-        $data['recaudos'] = $data['ficha']->recaudosFicha;
-        $data['bitacora'] = new Bitacora();
-        $data['bitacoras'] = $data['ficha']->bitacoras;
-        $data['parentesco'] = $data['jugador']->getParentesco($data['representante']->id);
-        $data['foto'] = new FotoFicha();
-        $data['fotos'] = $data['ficha']->fotos;
+
         
         if (Request::ajax()) {
             return Response::json($data);
