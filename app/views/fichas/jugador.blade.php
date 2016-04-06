@@ -4,6 +4,16 @@
         <h4><span id='span-jugador-documento'>{{$jugador->documento}}</span></h4>
     </div>
 </div>
+<div class="row col-xs-12 col-sm-3 col-md-3">
+    <div class="form-group" >
+        {{Form::concurrencia($jugador)}}
+        @if($jugador->foto !="")
+        {{ HTML::image($base_path . $jugador->id . DIRECTORY_SEPARATOR . $jugador->foto, 'Foto' ,array('id'=>'fotoJugador','class'=>'img-responsive disparadorArchivo','data-urlsubir'=>url('fichas/subirfoto/'.$jugador->id),'data-callback'=>'fotoSubida','data-tipoarchivo'=>'image/*')) }}
+        @else
+        {{ HTML::image('img/usericon.jpg', 'No hay foto aun',array('id'=>'fotoJugador','class'=>'img-responsive disparadorArchivo','data-urlsubir'=>url('fichas/subirfoto/'.$jugador->id),'data-callback'=>'fotoSubida','data-tipoarchivo'=>'image/*')) }}
+        @endif
+    </div>
+</div>
 <div class="row">
     {{Form::btInput($jugador,'nombre',4)}}
     {{Form::btInput($jugador,'apellido',4)}}

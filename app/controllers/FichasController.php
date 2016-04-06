@@ -18,7 +18,7 @@ class FichasController extends BaseController {
         return View::make('fichas.planilla', $data);
     }
 
-    public function getIndex() {           
+    public function getIndex() {
         $data['fichas'] = Ficha::eagerLoad()
                 ->aplicarFiltro()
                 ->ordenar();
@@ -26,7 +26,7 @@ class FichasController extends BaseController {
         //se usa para el helper de busqueda
         $data['persona'] = new Persona();
         $data['ficha'] = new Ficha();
-        
+
         return View::make('fichas.index', $data);
     }
 
@@ -65,7 +65,7 @@ class FichasController extends BaseController {
         $data['representante'] = Persona::findOrNew($data['ficha']->representante_id);
 //        $data['recaudo'] = new RecaudosFicha();
 //        $data['recaudos'] = $data['ficha']->recaudosFicha;
-        
+
         if (Request::ajax()) {
             return Response::json($data);
         }
@@ -100,6 +100,36 @@ class FichasController extends BaseController {
         return $this->reporte->generar('fichas.imprimir', $data);
     }
 
+    public function postSubirfoto($idPersona) {
+        if (!Input::hasFile('file')) {
+            return Response::json(array('error' => 'No hay ningun archivo'), 400);
+        }
+        $persona = Persona::findOrFail($idPersona);
+        $file = Input::file('file');
+
+        if (!in_array(strtolower($file->getClientOriginalExtension()), Persona::$extensionesImagenes)) {
+            return Response::json(array('mensaje' => 'Archivo no permitido'), 400);
+        }
+        if ($file->getSize() > 1048576) {
+            return Response::json(array('mensaje' => 'Archivo demasiado pesado, no puede superar 1MB de tamaño'), 400);
+        }
+        $fileName = 'Foto.' . $file->getClientOriginalExtension();
+
+        $base_path = 'documentos' . DIRECTORY_SEPARATOR . 'PER' . $persona->id;
+
+        $file->move($base_path, $fileName);
+        $foto = PHPImageWorkshop\ImageWorkshop::initFromPath($base_path . DIRECTORY_SEPARATOR . $fileName);
+        $foto->cropMaximumInPixel(0, 0, "MM");
+        $foto->resizeInPixel(160, 160);
+        $foto->save($base_path, $fileName);
+        if ($persona->foto != "") {
+            File::delete($base_path . $persona->foto);
+        }
+        $persona->foto = $fileName;
+        $persona->save();
+        return Response::json(array('url' => url($base_path . DIRECTORY_SEPARATOR . $fileName)));
+    }
+
     public function cancelarTransaccion() {
         \DB::rollBack();
     }
@@ -114,4 +144,5 @@ class FichasController extends BaseController {
         $data['ficha'] = Ficha::findOrFail($id);
         return $this->reporte->generar('fichas.imprimirbitacora', $data);
     }
+
 }

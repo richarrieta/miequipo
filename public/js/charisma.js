@@ -207,6 +207,37 @@ function docReady() {
         $(this).datepicker('hide');
     });
 
+    $('.disparadorArchivo').each(function() {
+        var callback = $(this).attr('data-callback');
+        try {
+            $(this).dropzone({
+                url: $(this).attr('data-urlsubir'),
+                previewsContainer: ".destino",
+                acceptedFiles: $(this).attr('data-tipoarchivo'),
+                dictInvalidFileType: "El archivo posee una extensión invalida",
+                success: function(file, response) {
+                    this.removeFile(file);
+                    $('#modalArchivo').modal('hide');
+                    if (callback != undefined) {
+                        eval(callback + '("' + response.url + '")');
+                    }
+                    window.location.reload();
+                },
+                processing: function() {
+                    $('#modalArchivo').modal('show');
+                },
+                error: function(file, errorMessage, request) {
+                    var response = JSON.parse(request.responseText);
+                    this.removeFile(file);
+                    $('#modalArchivo').modal('hide');
+                    mostrarError(response.mensaje);
+                }
+            });
+        } catch (err) {
+
+        }
+    });
+    
     //popover
     $('[data-toggle="popover"]').popover();
     //star rating

@@ -61,7 +61,7 @@
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereUpdatedAt($value)
  * @method static \Ficha ordenar()
- * @method static \Ficha aplicarFiltro($filtro)
+ * @method static \Ficha aplicarFiltro()
  * @method static \Ficha eagerLoad()
  * @property integer $parentesco_id 
  * @property-read \Persona $personaJugador 
@@ -141,7 +141,7 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
      * @return jugador
      */
     public function personaJugador() {
-        return $this->belongsTo('Persona');
+        return $this->belongsTo('Persona','jugador_id');
     }
 
     /**
@@ -149,7 +149,7 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
      * @return representante
      */
     public function personaRepresentante() {
-        return $this->belongsTo('Persona');
+        return $this->belongsTo('Persona', 'representante_id');
     }
 
     public function parentesco() {
@@ -247,16 +247,14 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
     }
 
     public function scopeEagerLoad($query) {
-        var_dump($query);
-        exit();
         return $query->with('personaRepresentante')
-                        ->with('personaJugador');
+                     ->with('personaJugador');
     }
 
     public function scopeAplicarFiltro($query) {
 
         $query = $query->leftJoin('personas', 'fichas.jugador_id', '=', 'personas.id')
-                ->leftJoin('clubs', 'fichas.club_id', '=', 'club.id')
+                ->leftJoin('clubs', 'fichas.club_id', '=', 'clubs.id')
                 ->leftJoin('parroquias', 'personas.parroquia_id', '=', 'parroquias.id')
                 ->leftJoin('municipios', 'parroquias.municipio_id', '=', 'municipios.id')
                 ->leftJoin('estados', 'municipios.estado_id', '=', 'estados.id')

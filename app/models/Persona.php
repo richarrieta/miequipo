@@ -211,6 +211,13 @@ class Persona extends BaseModel implements SimpleTableInterface, DefaultValuesIn
         }
         return "";
     }
+    
+    public function getAnioAttribute() {
+        if ($this->fecha_nacimiento != null) {
+            return $this->fecha_nacimiento->year;
+        }
+        return "";
+    }
 
     public function getDocumentoAttribute() {
         if ($this->tipoNacionalidad != null && $this->ci != null) {

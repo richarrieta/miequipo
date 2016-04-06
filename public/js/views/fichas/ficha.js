@@ -134,22 +134,9 @@ function buscarPersona(evt)
     });
 }
 
-function atencionInmediata(evt)
-{
-    var parent = $(evt.target).closest('.form-group').parent();
-    mostrarOcultar(parent.find('input[name=ind_inmediata]:checked').val() == 0, 'div-inmediata');
-}
-
-function beneficiarioAsegurado(evt)
-{
-    var parent = $(evt.target).closest('.form-group').parent();
-    mostrarOcultar(parent.find('input[name=ind_asegurado]:checked').val() == 0, 'div-asegurado');
-}
-
-function personaTrabaja(evt)
-{
-    var parent = $(evt.target).closest('form').parent();
-    mostrarOcultar(parent.find('input[name=ind_trabaja]:checked').val() == 0, 'div-trabaja', parent);
+function fotoSubida(url) {
+    $('#fotoPersona').attr('src', url);
+    mostrarMensaje("Se añadio la foto correctamente.");
 }
 
 function bitacoraAlarma(evt)
