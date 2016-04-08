@@ -7,18 +7,23 @@
         <meta name="description" content="Sistema para administracion de mi equipo">
 
         <!--CSS-->
+        {{HTML::style('bower_components/colorbox/example3/colorbox.min.css')}}
         {{HTML::style('css/bootstrap-united.min.css')}}
         {{HTML::style('css/charisma-app.css')}}
-        {{HTML::style('bower_components/colorbox/example3/colorbox.min.css')}}
         {{HTML::style('css/jquery.noty.min.css')}}
         {{HTML::style('css/noty_theme_default.min.css')}}
         {{HTML::style('css/estilo_sasyc.css')}}
         {{HTML::style('css/morris.css')}}
-
-
-        <!--JS-->
-        {{HTML::script('bower_components/jquery/jquery.min.js')}}
-
+        {{HTML::style('css/datatables.bootstrap.min.css')}}
+        {{HTML::style('css/datatables.min.css')}}        
+        {{HTML::style('css/photobox.min.css')}}
+        {{HTML::style('css/photobox_styles.css')}}
+        {{HTML::style('css/datepicker.min.css')}}        
+        {{HTML::style('css/font-awesome.min.css')}}
+        {{HTML::style('css/select2.min.css')}}
+        {{HTML::style('css/dropzone.min.css')}}
+        {{HTML::style('css/multiselect.min.css')}}
+        {{HTML::style('css/jRating.min.css')}}
     </head>
     <body>
         <noscript>
@@ -68,35 +73,30 @@
         <script>
             var baseUrl = '{{url("")}}/';
         </script>
+        <!--JS-->
+        {{HTML::script('bower_components/jquery/jquery.min.js')}}
         {{HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js')}}
-        {{HTML::script('js/jquery.cookie.min.js')}}
         {{HTML::script('bower_components/moment/min/moment.min.js')}}
         {{HTML::script('bower_components/colorbox/jquery.colorbox-min.js')}}
+        
+        {{HTML::script('js/jquery.cookie.min.js')}}
         {{HTML::script('js/jquery.noty.min.js')}}
         {{HTML::script('js/jquery.raty.min.js')}}
         {{HTML::script('js/jquery.history.min.js')}}
         {{HTML::script('js/jquery.autoNumeric.min.js')}}
-
         {{HTML::script('js/datatables.min.js')}}
-        {{HTML::script('js/datatables.bootstrap.min.js')}}
-
-        {{HTML::style('css/datatables.bootstrap.min.css')}}
-        {{HTML::style('css/datatables.min.css')}}
-
-        {{HTML::style('css/datepicker.min.css')}}
+        {{HTML::script('js/datatables.bootstrap.min.js')}}        
         {{HTML::script('js/datepicker.min.js')}}
         {{HTML::script('js/ckeditor/ckeditor.js')}}
-
         {{HTML::script('js/charisma.js')}}
-        {{HTML::style('css/photobox.min.css')}}
-        {{HTML::style('css/photobox_styles.css')}}
         {{HTML::script('js/jquery.photobox.min.js')}}
-        {{HTML::style('css/select2.min.css')}}
         {{HTML::script('js/select2.min.js')}}
         {{HTML::script('js/i18n/select2.es.js')}}
-        {{HTML::style('css/font-awesome.min.css')}}
         {{HTML::script('js/typeahead.min.js')}}
         {{HTML::script('js/funcionesajax.js')}}
+        {{HTML::script('js/dropzone.min.js')}}
+        {{HTML::script('js/multiselect.min.js')}}
+        {{HTML::script('js/jRating.min.js')}}
 
         <div class="modal fade" id="modalConfirmacion">
             <div class="modal-dialog">

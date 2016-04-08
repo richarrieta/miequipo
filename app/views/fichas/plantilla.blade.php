@@ -130,12 +130,6 @@
         @endunless
     </div>
 </div>
-<div class="modal fade" id="modalArchivo">
-    <div class="modal-dialog">
-        <div class="modal-body destino dropzone-previews" id="contenidoModalArchivo">
-        </div>
-    </div>
-</div>
 @stop
 @section('javascript')
 {{HTML::script('js/views/fichas/ficha.js')}}

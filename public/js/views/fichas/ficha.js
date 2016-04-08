@@ -1,81 +1,39 @@
-$(document).ajaxComplete(function (data) {
-    $('[id=ind_alarma]').unbind('change');
-    $('[id=ind_alarma]').each(function () {
-        $(this).on('change', bitacoraAlarma);
-    });
-
-    $('#form-bitacora').find('input,select').removeAttr('required');
-    $('#form-familiares').find("#tipo_nacionalidad_id, #ci").unbind('change');
-    $('#form-familiares').find("#tipo_nacionalidad_id, #ci").on('change', buscarPersona);
-    $('#gallery').photobox('a');
-    beneficiarioKerux();
-});
-
 $(document).ready(function () {
-    beneficiarioKerux();
     $('input[id=fecha_nacimiento]').each(function () {
         $(this).change(calcularEdad);
     });
 
-    $('.buscar-seniat').on('click', buscarSENIAT);
-    
-    $('.buscar-cne').on('click', buscarCNE);
-    
-    $('#form-familiares').find("#tipo_nacionalidad_id, #ci").on('change', buscarPersona);
-
-    $('#form-informe').find('#total_ingresos').prop("disabled", true);
-
     $('a.glyphicon-transfer').click(copiarDireccion);
-    $('#form-bitacora').find('input,select').removeAttr('required');
-    $('[id=ind_inmediata]').each(function () {
-        $(this).on('change', atencionInmediata);
-        $(this).trigger('change');
-    });
 
-    $('[id=ind_asegurado]').each(function () {
-        $(this).on('change', beneficiarioAsegurado);
-        $(this).trigger('change');
-    });
+    $('.disparadorArchivo').each(function () {
+        var callback = $(this).attr('data-callback');
+        try {
+            $(this).dropzone({
+                url: $(this).attr('data-urlsubir'),
+                previewsContainer: ".destino",
+                acceptedFiles: $(this).attr('data-tipoarchivo'),
+                dictInvalidFileType: "El archivo posee una extensión invalida",
+                success: function (file, response) {
+                    this.removeFile(file);
+                    $('#modalArchivo').modal('hide');
+                    if (callback != undefined) {
+                        eval(callback + '("' + response.url + '")');
+                    }
+                    window.location.reload();
+                },
+                processing: function () {
+                    $('#modalArchivo').modal('show');
+                },
+                error: function (file, errorMessage, request) {
+                    var response = JSON.parse(request.responseText);
+                    this.removeFile(file);
+                    $('#modalArchivo').modal('hide');
+                    mostrarError(response.mensaje);
+                }
+            });
+        } catch (err) {
 
-    $('[id=ind_trabaja]').each(function () {
-        $(this).on('change', personaTrabaja);
-        $(this).trigger('change');
-    });
-
-    $('[id=ind_alarma]').each(function () {
-        $(this).on('change', bitacoraAlarma);
-    });
-    $('#gallery').photobox('a');
-
-    $('body').on('change', '#proceso_id', function(){
-        var formulario = $(this).closest('form');
-        if($(this).val()==""){
-            return;
         }
-        $.get(baseUrl+'administracion/tablas/procesos/proceso/'+$(this).val(), function(data){
-            //Se ocultan todos para que sea mas facil trabajarlos
-            $(formulario).find('#beneficiario-id-div').hide();
-            $(formulario).find('#btn-agregar-beneficiario').hide();
-            $(formulario).find('#monto').hide().removeAttr('required');
-            $(formulario).find('#cantidad').hide().removeAttr('required');
-            $(formulario).find('#montoapr').hide().removeAttr('required');
-            
-            if(data.ind_beneficiario){
-                $(formulario).find('#beneficiario-id-div').show();
-                $(formulario).find('#btn-agregar-beneficiario').show();
-            }
-            if(data.ind_monto){
-                $(formulario).find('#monto').show();
-                $(formulario).find('#montoapr').show();
-                $(formulario).find('#monto').attr('required',true);
-                $(formulario).find('#montoapr').attr('required',true);
-            }
-            if(data.ind_cantidad){
-                $(formulario).find('#cantidad').show();
-                $(formulario).find('#cantidad').attr('required',true);
-            }
-           
-        });
     });
 });
 
@@ -137,60 +95,4 @@ function buscarPersona(evt)
 function fotoSubida(url) {
     $('#fotoPersona').attr('src', url);
     mostrarMensaje("Se añadio la foto correctamente.");
-}
-
-function bitacoraAlarma(evt)
-{
-    var parent = $(evt.target).closest('.form-group').parent();
-    mostrarOcultar(parent.find('input[name=ind_alarma]:checked').val() == 0, 'div-fecha-bitacora');
-}
-
-function grupoFamiliar(data) {
-    var solicitud_id = $('#form-solicitud').find('#id').val();
-    $.get(baseUrl + 'solicitudes/modificar/' + solicitud_id, function (data) {
-        $('#total_ingresos').autoNumeric('set', data.solicitud.total_ingresos);
-    });
-}
-
-function beneficiarioKerux() {
-    $('#agregar-beneficiario').find('input, select').removeAttr('required');
-    $('#btn-agregar-beneficiario').click(function () {
-        var parent = $(this).closest('form');
-        $(parent).find('#beneficiario-id-div').hide();
-        $(this).hide();
-        $('#agregar-beneficiario').show();
-        $('#agregar-beneficiario').find('input, select').attr('required', 'required');
-        $('#ind_creando_benef').val(1);
-    });
-    $('#btn-seleccionar-beneficiario').click(function () {
-        var parent = $(this).closest('form');
-        $(parent).find('#beneficiario-id-div').show();
-        $('#agregar-beneficiario').find('input, select').removeAttr('required');
-        $('#btn-agregar-beneficiario').show();
-        $('#agregar-beneficiario').hide();
-        $('#ind_creando_benef').val(0);
-    });
-}
-
-function buscarSENIAT(evt)
-{
-    var pUrl = "http://contribuyente.seniat.gob.ve/BuscaRif/BuscaRif.jsp";
-    var iseniat = $('#iseniat');
-    iseniat.attr('src', pUrl);
-    $('#div-seniat').show();
-    iseniat.contents().find('head').append('<meta charset="utf-8">');
-}
-
-function buscarCNE(evt)
-{
-    var parent = $(evt.target).closest('.row').parent();
-    if (parent.find('#ci').val() == "") {
-        return;
-    }
-    //var mDivDestino = $('#cne');
-    var pUrl = "http://www.cne.gob.ve/web/registro_electoral/ce.php?nacionalidad=V&cedula=" + parent.find('#ci').val();
-    var icne = $('#icne');
-    icne.attr('src', pUrl);
-    $('#div-cne').show();
-    icne.contents().find('head').append('<meta charset="utf-8">');
 }

@@ -100,10 +100,12 @@ class FichasController extends BaseController {
         return $this->reporte->generar('fichas.imprimir', $data);
     }
 
-    public function postSubirfoto($idPersona) {
+    public function getSubirfoto($idPersona) {
+        
         if (!Input::hasFile('file')) {
             return Response::json(array('error' => 'No hay ningun archivo'), 400);
         }
+        
         $persona = Persona::findOrFail($idPersona);
         $file = Input::file('file');
 

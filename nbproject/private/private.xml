@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/controllers/FichasController.php</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/views/fichas/plantilla.blade.php</file>
-            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/views/fichas/index.blade.php</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/public/js/views/fichas/planilla.js</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/public/js/views/fichas/ficha.js</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/views/fichas/jugador.blade.php</file>
+            <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/app/views/fichas/ficha.blade.php</file>
             <file>file:/C:/Users/richarrieta/Documents/workspaceLaravel/miequipo/public/js/charisma.js</file>
         </group>
     </open-files>
