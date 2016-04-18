@@ -63,8 +63,8 @@ class FichasController extends BaseController {
 
         $data['jugador'] = Persona::findOrFail($data['ficha']->jugador_id);
         $data['representante'] = Persona::findOrNew($data['ficha']->representante_id);
-//        $data['recaudo'] = new RecaudosFicha();
-//        $data['recaudos'] = $data['ficha']->recaudosFicha;
+        $data['recaudo'] = new RecaudosFicha();
+        $data['recaudos'] = $data['ficha']->recaudosFicha;
 
         if (Request::ajax()) {
             return Response::json($data);

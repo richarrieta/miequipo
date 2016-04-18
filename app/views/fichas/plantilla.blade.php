@@ -67,7 +67,21 @@
                     {{Form::close()}}
                 </div>
             </div>         
-        </div>             
+        </div>   
+        <div class="panel panel-danger">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#PanelSeis">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#PanelSeis">
+                        Recaudos
+                    </a>
+                </h4>
+            </div>  
+            <div id="PanelSeis" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @include('fichas.recaudos')
+                </div>
+            </div>  
+        </div>
         @endunless
         @endif
     </div>

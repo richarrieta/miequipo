@@ -32,7 +32,7 @@ class CreateFichasTable extends Migration {
             $table->string('peso')->nullable();
             $table->string('talla_camisa')->nullable();
             $table->string('talla_short')->nullable();
-            $table->integer('estatus', false, true)->default(1);
+            $table->string('estatus', 3);
             $table->boolean('ind_active')->default(1);
             $table->integer('version')->default(1);
             $table->timestamps();

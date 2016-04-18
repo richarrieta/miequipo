@@ -69,7 +69,7 @@
  * @property-read \Parentesco $parentesco 
  * @method static \Illuminate\Database\Query\Builder|\Ficha whereParentescoId($value)
  */
-class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface {
+class Ficha extends BaseModel implements DefaultValuesInterface, SimpleTableInterface, DecimalInterface {
 
     use \Traits\EloquentExtensionTrait;
 
@@ -198,25 +198,32 @@ class Ficha extends BaseModel implements SimpleTableInterface, DecimalInterface 
             'representante_id' => 'required',
         ];
     }
+    
+    public function getDefaultValues() {
+        return [
+            'estatus' => 'ELA'
+        ];
+    }
 
     public static function crear(array $values) {
         $ficha = new Ficha();
         $ficha->fill($values);
         $ficha->reglasCreacion();
         $ficha->estatus = "ELA";
-        $ficha->validate();
+        $ficha->validate();        
         return $ficha;
     }
 
     public function createdModel($model) {
-//        $recaudos = Recaudo::all();
-//        $recaudos->each(function ($recaudo) use ($model) {
-//            $recFicha = new RecaudosFicha();
-//            $recFicha->ficha()->associate($model);
-//            $recFicha->recaudo()->associate($recaudo);
-//            $recFicha->save();
-//        });
+        $recaudos = Recaudo::all();
+        $recaudos->each(function ($recaudo) use ($model) {
+            $recFicha = new RecaudosFicha();
+            $recFicha->ficha()->associate($model);
+            $recFicha->recaudo()->associate($recaudo);
+            $recFicha->save();
+        });
 
+        
         Bitacora::registrar('Se registró la ficha.', $model->id);
     }
 
