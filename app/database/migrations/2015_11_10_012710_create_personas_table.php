@@ -15,8 +15,8 @@ class CreatePersonasTable extends Migration {
             $table->increments('id');
             $table->string('nombre', 50);
             $table->string('apellido', 30);
-            $table->string('foto', 50)->nullable();
-            $table->boolean('ind_sincedula')->default(0);
+            $table->string('avatar', 50)->nullable();
+            $table->boolean('ind_ci')->default(0);
             $table->integer('tipo_nacionalidad_id', false, true)->nullable();
             $table->bigInteger('ci')->nullable();
             $table->string('sexo', 1)->nullable();

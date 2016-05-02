@@ -13,12 +13,9 @@ class CreateTemporadasTable extends Migration {
     public function up() {
         Schema::create('temporadas', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('periodo', 150)->nullable();
             $table->integer('torneo_id', false, true)->nullable();
-            $table->string('categoria')->nullable();
-            $table->decimal('monto_temporada', 14, 2)->nullable();
-            $table->decimal('monto_arbitraje', 14, 2)->nullable();
-            $table->string('anos_categoria')->nullable();
+            $table->string('periodo', 150)->nullable();
+            $table->string('nombre', 150)->nullable();
             $table->boolean('ind_active')->default(1);
             $table->integer('version')->default(1);
             $table->timestamps();

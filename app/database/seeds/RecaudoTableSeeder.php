@@ -18,16 +18,6 @@ class RecaudoTableSeeder extends Seeder {
             'ind_obligatorio' => '0',
             'ind_vence' => '0',
             'ind_active' => '1'));
-        Recaudo::create(array('nombre' => 'Foto reciente tamaño carnet del representante',
-            'descripcion' => 'Foto reciente tamaño carnet del representante',
-            'ind_obligatorio' => '1',
-            'ind_vence' => '0',
-            'ind_active' => '1'));
-        Recaudo::create(array('nombre' => 'Foto reciente tamaño carnet del jugador',
-            'descripcion' => 'Foto reciente tamaño carnet del jugador',
-            'ind_obligatorio' => '1',
-            'ind_vence' => '0',
-            'ind_active' => '1'));
     }
 
 }

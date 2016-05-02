@@ -40,6 +40,13 @@
                 </ul>
             </li>
             <li class="dropdown">
+                <a href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i> Torneos <span
+                        class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                   <li>{{HTML::link('torneos','Mis Torneos')}}</li>
+                </ul>
+            </li>            
+            <li class="dropdown">
                 <a href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i> Listados <span
                         class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

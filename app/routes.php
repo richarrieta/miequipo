@@ -38,6 +38,7 @@ Route::group(['before' => 'auth'], function() {
     Route::controller('recaudosficha', 'RecaudosFichaController');
     Route::controller('helpers', 'HelpersController');
     Route::controller('fotosficha', 'FotosFichaController');
+    Route::controller('torneos', 'TorneosController');
 });
 
 Route::controller('login', 'LoginController');

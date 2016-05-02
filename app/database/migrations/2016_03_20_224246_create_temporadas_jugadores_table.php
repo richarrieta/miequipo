@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJugadorTemporadaTable extends Migration {
+class CreateTemporadasJugadoresTable extends Migration {
 
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateJugadorTemporadaTable extends Migration {
     public function up() {
         Schema::create('jugador_temporada', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('club_temporada_id', false, true);
+            $table->integer('temporada_equipo_id', false, true);
             $table->integer('ficha_id', false, true);
             $table->integer('goles_temporada')->nullable();
             $table->integer('asistencias_temporada')->nullable();

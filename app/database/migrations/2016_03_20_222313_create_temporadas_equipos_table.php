@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClubTemporadaTable extends Migration {
+class CreateTemporadasEquiposTable extends Migration {
 
     /**
      * Run the migrations.
@@ -11,9 +11,9 @@ class CreateClubTemporadaTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('club_temporada', function(Blueprint $table) {
+        Schema::create('temporadas_equipos', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('temporada_id', false, true);
+            $table->integer('temporada_categoria_id', false, true);
             $table->integer('club_id', false, true);
             $table->integer('entrenador_id', false, true);
             $table->string('alias', 50);
