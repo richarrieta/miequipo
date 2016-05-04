@@ -1,9 +1,9 @@
 <?php
 
 
-class TemporadaCategoria extends BaseModel implements SimpleTableInterface, DefaultValuesInterface {
+class JugadorCategoria extends BaseModel implements SimpleTableInterface, DefaultValuesInterface {
 
-    protected $table = "temporadas_categorias";
+    protected $table = "jugador_temporada";
 
     /**
      * Campos que se pueden llenar mediante el uso de mass-assignment
@@ -11,7 +11,7 @@ class TemporadaCategoria extends BaseModel implements SimpleTableInterface, Defa
      * @var array
      */
     protected $fillable = [
-        'nombre' 
+        'goles_temporada' 
     ];
 
     /**
@@ -22,35 +22,34 @@ class TemporadaCategoria extends BaseModel implements SimpleTableInterface, Defa
      * @var array
      */
     protected $rules = [
-        'nombre' => 'required',
     ];
 
     protected function getPrettyFields() {
         return [
-            'nombre' => 'Nombre',
+            'goles_temporada' => 'Goles en la temporada',
         ];
     }
 
     public function getPrettyName() {
-        return "Temporadas categorias";
+        return "Jugador por categoria";
     }
 
         /**
-     * Define una relación pertenece a Temporada
-     * @return Temporada
+     * Define una relación pertenece a Ficha
+     * @return Ficha
      */
-    public function temporada() {
-        return $this->belongsTo('Temporada');
+    public function ficha() {
+        return $this->belongsTo('Ficha');
     }
     
-    public function temporadasEquipos() {
-        return $this->hasMany('TemporadaEquipo', 'temporada_categoria_id');
+    public function temporadasEquipo() {
+        return $this->belongsTo('TemporadaEquipo');
     }
 
    
     public function getTableFields() {
         return [
-            'nombre'
+            'goles_temporada'
         ];
     }
 

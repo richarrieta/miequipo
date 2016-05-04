@@ -39,11 +39,11 @@ class Temporada extends BaseModel implements SimpleTableInterface, DefaultValues
      * Define una relación pertenece a Torneo
      * @return Torneo
      */
-    public function getTorneo() {
+    public function torneo() {
         return $this->belongsTo('Torneo', 'torneo_id');
     }
     
-    public function getTemporadasCategorias() {
+    public function temporadasCategorias() {
         return $this->hasMany('TemporadaCategoria', 'temporada_id');
     }
 

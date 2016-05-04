@@ -36,11 +36,11 @@ class TemporadaEquipo extends BaseModel implements SimpleTableInterface, Default
     }
 
         /**
-     * Define una relación pertenece a Temporada
-     * @return Temporada
+     * Define una relación pertenece a JugadorCategoria
+     * @return JugadorCategoria
      */
-    public function temporadaCategoria() {
-        return $this->belongsTo('TemporadaCategoria');
+    public function jugadorCategoria() {
+        return $this->hasMany('JugadorCategoria', 'temporada_equipo_id');
     }
     
         /**
